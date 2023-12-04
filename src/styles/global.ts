@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
+
   * {
     margin: 0;
     padding: 0;
@@ -16,9 +17,12 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
   }
 
-  body, input, textarea, button {
+  p {
     font-family: 'Roboto', sans-serif;
-    font-weight: 400;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Baloo 2', sans-serif;
     font-size: 1rem;
   }
 `;
