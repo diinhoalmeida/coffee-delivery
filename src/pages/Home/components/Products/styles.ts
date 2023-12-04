@@ -115,7 +115,7 @@ export const QuantityControl = styled.div`
   gap: 10px;
   height: 100%;
   border-radius: 6px;
-  margin-right: -2rem;
+
   padding: 0 0.5rem;
   color: ${(props) => props.theme["purple"]};
 
@@ -124,7 +124,7 @@ export const QuantityControl = styled.div`
   }
 
   @media only screen and (max-width: 960px) {
-    margin-right: -2rem;
+    margin-right: -0.5rem;
   }
 
   @media only screen and (max-width: 816px) {
