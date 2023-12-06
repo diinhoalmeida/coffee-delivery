@@ -34,6 +34,7 @@ export function coffeeReducer(state: ICoffeeState, action: IActionType) {
     case ActionTypes.ADD_COFFEE:
       return addCoffeeInCartMethod(state, action);
     case ActionTypes.REMOVE_COFFEE:
+      console.log("porra", state, action);
       return removeCoffeeMethod(state, action);
     case ActionTypes.REMOVE_ALL_COFFEES:
       return removeAllCoffeesMethod(state);

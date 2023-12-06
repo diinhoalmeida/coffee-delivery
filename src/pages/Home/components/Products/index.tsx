@@ -1,6 +1,9 @@
+import QuantityControlComponent from "../../../../components/QuantityControl";
 import { useCoffee } from "../../../../hooks/useCoffee";
+import { formatPrice } from "../../../../utils/priceFormatter";
 import { coffees } from "../../constants/coffees";
 import {
+  ActionCardSpace,
   AddToCartButton,
   BadgeTypeCoffee,
   BadgeTypeCoffeeText,
@@ -16,22 +19,21 @@ import {
   MoneyType,
   ProductsContainer,
   ProductsTitle,
-  Quantity,
-  QuantityControl,
 } from "./styles";
-import { Minus, Plus, ShoppingCart } from "@phosphor-icons/react";
+import { ShoppingCart } from "@phosphor-icons/react";
 import { useState } from "react";
 
-type TCoffee = {
+export type TCoffee = {
   id: number;
   name: string;
   description: string;
   label: string[];
   price: number;
   image: string;
+  quantity?: number;
 };
 
-type TQuantitites = {
+export type TQuantitites = {
   [id: number]: number;
 };
 
@@ -41,14 +43,6 @@ function Products() {
   const [quantities, setQuantities] = useState<TQuantitites>(
     {} as TQuantitites
   );
-
-  function formatPrice(arg: number) {
-    const priceFormatted = new Intl.NumberFormat("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    }).format(arg);
-    return priceFormatted;
-  }
 
   function handleAddCoffee(coffeeData: TCoffee) {
     const coffeeId = coffeeData.id;
@@ -85,34 +79,28 @@ function Products() {
                 <MoneyType>R$</MoneyType>
                 <CoffeePrice>{formatPrice(item.price)}</CoffeePrice>
               </CoffeePriceContainer>
-              <QuantityControl>
-                <Minus
-                  width={14}
-                  height={14}
-                  cursor="pointer"
-                  onClick={() =>
+              <ActionCardSpace>
+                <QuantityControlComponent
+                  quantities={quantities}
+                  idProduct={item.id}
+                  onClickMinus={() =>
                     setQuantities({
                       ...quantities,
                       [item.id]: Math.max((quantities[item.id] || 0) - 1, 1),
                     })
                   }
-                />
-                <Quantity>{quantities[item.id] || 0}</Quantity>
-                <Plus
-                  width={14}
-                  height={14}
-                  cursor="pointer"
-                  onClick={() =>
+                  onClickPlus={() =>
                     setQuantities({
                       ...quantities,
                       [item.id]: (quantities[item.id] || 0) + 1,
                     })
                   }
                 />
-              </QuantityControl>
-              <AddToCartButton onClick={() => handleAddCoffee(item)}>
-                <ShoppingCart width={19.74} height={17.88} />
-              </AddToCartButton>
+
+                <AddToCartButton onClick={() => handleAddCoffee(item)}>
+                  <ShoppingCart width={19.74} height={17.88} />
+                </AddToCartButton>
+              </ActionCardSpace>
             </FooterCard>
           </CoffeeCard>
         ))}

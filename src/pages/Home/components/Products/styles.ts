@@ -18,15 +18,15 @@ export const CoffeList = styled.div`
   column-gap: 20px;
   row-gap: 30px;
 
-  @media only screen and (max-width: 960px) {
+  @media only screen and (max-width: 1248px) {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @media only screen and (max-width: 752px) {
+  @media only screen and (max-width: 864px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media only screen and (max-width: 544px) {
+  @media only screen and (max-width: 576px) {
     grid-template-columns: repeat(1, 1fr);
   }
 `;
@@ -90,13 +90,17 @@ export const FooterCard = styled.div`
   padding-bottom: 1rem;
   width: 100%;
   justify-content: space-between;
-  align-items: baseline;
   margin-top: 1rem;
 `;
 
 export const CoffeePriceContainer = styled.div`
   display: flex;
   align-items: baseline;
+`;
+
+export const ActionCardSpace = styled.div`
+  display: flex;
+  gap: 10px;
 `;
 
 export const MoneyType = styled.p`

@@ -30,7 +30,6 @@ export function removeCoffeeMethod(state: ICoffeeState, action: IActionType) {
   return produce(state, (draft) => {
     if (action.payload && action.payload.coffeeId) {
       const { coffeeId } = action.payload;
-
       const newCoffeeList = draft.coffeeList.filter(
         (coffee) => coffee.id !== coffeeId
       );
