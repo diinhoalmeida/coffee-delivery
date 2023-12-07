@@ -52,6 +52,7 @@ export interface FormInputs {
   neighborhood: string;
   city: string;
   state: string;
+  deliveryTime?: string;
   paymentMethod: TPaymentMethods | undefined;
 }
 
