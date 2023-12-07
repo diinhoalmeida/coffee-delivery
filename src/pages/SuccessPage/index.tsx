@@ -16,7 +16,7 @@ import {
 import { addMinutes, differenceInMinutes } from "date-fns";
 import { ADDRESS_CONSUMER } from "../../context/CoffeeContext";
 import { useEffect, useState } from "react";
-import Illustration from "../../assets/Illustration.png";
+import Illustration from "../../assets/illustration.png";
 
 enum TPaymentMethods {
   credit = "credit",

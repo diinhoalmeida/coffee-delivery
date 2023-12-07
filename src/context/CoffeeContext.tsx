@@ -113,6 +113,7 @@ export function CoffeeContextProvider({
 
   function handleCheckout(data: FormInputs) {
     localStorage.setItem(ADDRESS_CONSUMER, JSON.stringify(data));
+    setCoffeeQuantity(0);
     dispatch(removeAllCoffeesAction());
   }
 
