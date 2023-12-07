@@ -43,6 +43,7 @@ import { TQuantitites } from "../Home/components/Products";
 import { formatPrice } from "../../utils/priceFormatter";
 import { useCoffee } from "../../hooks/useCoffee";
 import { TCoffeeType } from "../../reducers/cart/reducer";
+import { useNavigate } from "react-router-dom";
 
 export interface FormInputs {
   cep: number;
@@ -80,6 +81,7 @@ export type OrderInfo = z.infer<typeof newOrder>;
 function Checkout() {
   const { coffeeList, removeCoffee, handleCheckout } = useCart();
   const [typePayment, setTypePayment] = useState<TPaymentMethods | undefined>();
+  const navigate = useNavigate();
   const [quantities, setQuantities] = useState<TQuantitites>(
     {} as TQuantitites
   );
@@ -154,6 +156,7 @@ function Checkout() {
     if (coffeeList.length === 0) {
       return alert("É preciso ter pelo menos um item no carrinho");
     }
+    navigate("/success");
   };
 
   return (

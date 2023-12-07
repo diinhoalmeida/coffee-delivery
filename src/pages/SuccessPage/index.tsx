@@ -79,8 +79,6 @@ function SuccessPage() {
       deliveryTime: deliveryEstimate,
     };
 
-    localStorage.setItem(ADDRESS_CONSUMER, JSON.stringify(newData));
-
     return newData;
   };
 

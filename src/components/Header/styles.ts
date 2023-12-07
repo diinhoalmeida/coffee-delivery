@@ -32,6 +32,22 @@ export const ButtonShoppingCart = styled.button`
   background-color: ${(props) => props.theme["yellow-light"]};
   color: ${(props) => props.theme["yellow-dark"]};
   border: none;
+  cursor: pointer;
   border-radius: 6px;
+  position: relative;
   padding: 0 10px;
+`;
+
+export const BadgeQuantity = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffff;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: ${(props) => props.theme["yellow-dark"]};
 `;

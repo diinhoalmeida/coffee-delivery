@@ -1,4 +1,11 @@
-import { createContext, ReactNode, useReducer } from "react";
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import { TCoffeeType, coffeeReducer } from "../reducers/cart/reducer";
 import {
   addCoffeeAction,
@@ -49,6 +56,7 @@ export const ADDRESS_CONSUMER = "@coffee-delivery:address-consumer-state-1.0.0";
 export function CoffeeContextProvider({
   children,
 }: CoffeeContextProviderProps) {
+  const [coffeeQuantity, setCoffeeQuantity] = useState<number>(0);
   const [coffeesState, dispatch] = useReducer(
     coffeeReducer,
     { coffeeList: [] },
@@ -67,7 +75,19 @@ export function CoffeeContextProvider({
 
   const { coffeeList } = coffeesState;
 
-  const coffeeQuantity = coffeeList ? coffeeList.length : 0;
+  const sumCoffeeQuantity = useCallback(() => {
+    const totalQuantity = coffeeList.reduce(
+      (sum, coffee) => sum + (coffee.quantity || 0),
+      0
+    );
+    setCoffeeQuantity(totalQuantity);
+  }, [coffeeList]);
+
+  useEffect(() => {
+    if (coffeeList.length > 0) {
+      sumCoffeeQuantity();
+    }
+  }, [coffeeList, sumCoffeeQuantity]);
 
   function addNewCoffee({ coffeeData, quantity }: IAddNewCoffee) {
     dispatch(
